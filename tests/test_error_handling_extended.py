@@ -70,7 +70,7 @@ class TestInvalidFileContent(unittest.TestCase):
         sav_path = os.path.join(parent_folder, "test_data", "basic", "sample.sav")
         with open(sav_path, "rb") as f:
             data = f.read()
-        # Write only half the file
+        # Write only a quarter of the file
         with tempfile.NamedTemporaryFile(suffix=".sav", delete=False) as f:
             f.write(data[: len(data) // 4])
             f.flush()
