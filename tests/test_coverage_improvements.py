@@ -906,17 +906,18 @@ class TestSASCatalogRead(unittest.TestCase):
 
     def test_read_sas7bcat_returns_metadata(self):
         """Reading SAS catalog should return metadata with value_labels."""
-        catalog_path = os.path.join(self.catalog_data_folder, "test_catalog_linux.sas7bcat")
+        catalog_path = os.path.join(self.catalog_data_folder, "test_formats_linux.sas7bcat")
         if os.path.exists(catalog_path):
             _, meta = pyreadstat.read_sas7bcat(catalog_path)
             self.assertTrue(hasattr(meta, "value_labels"))
+            self.assertIsInstance(meta.value_labels, dict)
 
-    def test_sas7bcat_metadataonly(self):
-        """SAS catalog with metadataonly should work."""
-        catalog_path = os.path.join(self.catalog_data_folder, "test_catalog_linux.sas7bcat")
+    def test_sas7bcat_value_labels_nonempty(self):
+        """SAS catalog should contain non-empty value_labels."""
+        catalog_path = os.path.join(self.catalog_data_folder, "test_formats_linux.sas7bcat")
         if os.path.exists(catalog_path):
             _, meta = pyreadstat.read_sas7bcat(catalog_path)
-            self.assertTrue(hasattr(meta, "value_labels"))
+            self.assertTrue(len(meta.value_labels) > 0)
 
 
 # ---------------------------------------------------------------------------
