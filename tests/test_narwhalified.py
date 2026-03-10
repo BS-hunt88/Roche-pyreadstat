@@ -30,6 +30,11 @@ import narwhals as nw
 import numpy as np
 import polars as pl
 
+import pyreadstat
+
+# Default backend for pytest discovery; overridden in __main__ block
+backend = "pandas"
+
 is_pathlib_available = False
 try:
     from pathlib import Path

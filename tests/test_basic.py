@@ -24,6 +24,8 @@ import shutil
 import pandas as pd
 import numpy as np
 
+import pyreadstat
+
 is_pathlib_available = False
 try:
     from pathlib import Path
